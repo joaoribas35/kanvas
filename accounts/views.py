@@ -10,6 +10,8 @@ from rest_framework.authtoken.models import Token
 
 from accounts.serializers import UserSerializer
 
+import ipdb
+
 
 class UserView(APIView):
     def post(self, request):
@@ -21,7 +23,7 @@ class UserView(APIView):
         if User.objects.filter(username=serializer.validated_data['username']).exists():
             return Response({'error': 'username already exists'}, status=status.HTTP_409_CONFLICT)
 
-        user = User(username=serializer.validated_data['username'])
+        user = User(**serializer.validated_data)
 
         password = serializer.validated_data['password']
 
