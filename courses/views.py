@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,8 +7,6 @@ from courses.models import Course
 from django.contrib.auth.models import User
 from courses.serializers import CourseSerializer, EnrollStutendSerializer
 from courses.permissions import CoursePermissions, EnrollStudentPermissions
-
-import ipdb
 
 
 class CourseView(APIView):
@@ -72,4 +69,4 @@ class EnrollStudentView(APIView):
         course.users.set(students)
         serializer = CourseSerializer(course)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
