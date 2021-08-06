@@ -10,8 +10,6 @@ from rest_framework.authtoken.models import Token
 
 from accounts.serializers import UserSerializer
 
-import ipdb
-
 
 class UserView(APIView):
     def post(self, request):
